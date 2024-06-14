@@ -1,0 +1,26 @@
+--Table vets
+CREATE TABLE vets(
+vetid INT PRIMARY KEY,
+firstname VARCHAR(30) NOT NULL,
+lastname VARCHAR(30) NOT NULL,
+phonenumber VARCHAR(20),
+email VARCHAR(50), 
+clinicname VARCHAR(30), 
+specialty VARCHAR(30), 
+CONSTRAINT email_chk CHECK
+ (email LIKE '%@%.%'));
+
+--Table appointments
+CREATE TABLE appointments(
+appointmentid INT PRIMARY KEY,
+petid INT NOT NULL,
+appointmentdate DATE NOT NULL,
+reason VARCHAR(200),
+vetid INT,
+status VARCHAR(20),
+CONSTRAINT status_chk CHECK
+ (status IN ('Scheduled', 'Cancelled', 'Completed')),
+CONSTRAINT petid_fk FOREIGN KEY
+(petid) REFERENCES pets(petid),
+CONSTRAINT vetid_fk FOREIGN KEY
+(vetid) REFERENCES vets(vetid));

@@ -1,0 +1,45 @@
+-- Table: Owners
+CREATE TABLE Owners (
+OwnerID INT PRIMARY KEY NOT NULL,
+FirstName VARCHAR2(30) NOT NULL,
+LastName VARCHAR2(20) NOT NULL,
+PhoneNumber VARCHAR2(20) NOT NULL,
+Email VARCHAR2(30),
+Address VARCHAR2(100),
+EmergencyContactName VARCHAR2(20),
+EmergencyContactPhone VARCHAR2(20),
+CONSTRAINT chk_phone_format CHECK (PhoneNumber LIKE '___-___-____')
+);
+
+-- Table: Pets
+CREATE TABLE Pets (
+PetID INT PRIMARY KEY NOT NULL,
+Name VARCHAR2(20) NOT NULL,
+Species VARCHAR2(30) NOT NULL,
+Breed VARCHAR2(30),
+BirthDate DATE NOT NULL,
+Gender VARCHAR2(1) NOT NULL,
+MicrochipID INT UNIQUE,
+Weight DECIMAL(5, 2),
+Allergies VARCHAR2(200),
+OwnerID INT NOT NULL,
+CONSTRAINT chk_gender CHECK (Gender IN ('M', 'F', 'N', 'S')),
+CONSTRAINT chk_microchip_length CHECK (MicrochipID IS NULL OR LENGTH(CAST(MicrochipID AS VARCHAR2(15))) = 15),
+CONSTRAINT chk_weight_positive CHECK (Weight IS NULL OR Weight > 0),
+CONSTRAINT fk_owner FOREIGN KEY (OwnerID) REFERENCES Owners(OwnerID)
+);
+
+-- Table: Vaccinations
+CREATE TABLE Vaccinations (
+VaccinationID INT PRIMARY KEY NOT NULL CHECK (VaccinationID > 10),
+PetID INT NOT NULL,
+VaccineName VARCHAR2(20) NOT NULL,
+VaccinationDate DATE NOT NULL,
+BatchNumber VARCHAR2(20),
+ValidFrom DATE NOT NULL,
+ValidUntil DATE NOT NULL,
+RevaccinationDate DATE,
+CONSTRAINT chk_vaccination_date CHECK (VaccinationDate <= ValidFrom AND VaccinationDate <= ValidUntil),
+CONSTRAINT chk_validUntil CHECK (ValidFrom < ValidUntil),
+CONSTRAINT fk_pet FOREIGN KEY (PetID) REFERENCES Pets(PetID)
+);
