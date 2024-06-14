@@ -1,0 +1,71 @@
+-- --Table healthRecords
+CREATE TABLE HealthRecords (
+    HealthRecordID INT PRIMARY KEY CHECK (LENGTH(CAST(HealthRecordID AS VARCHAR2(6))) = 6),
+    PetID VARCHAR(20) NOT NULL,
+    VisitDate VARCHAR(30) NOT NULL,
+    Diagnosis VARCHAR(20),
+    Treatment VARCHAR(50),
+    Symptoms VARCHAR(100),
+    Notes VARCHAR(100),
+    VetID INT,
+    FOREIGN KEY (VetID) REFERENCES Vets(VetID)
+);
+
+-- Table Medications
+CREATE TABLE Medications (
+    MedicationID INT PRIMARY KEY,
+    HealthRecordID INT NOT NULL,
+    MedicationName VARCHAR(50) NOT NULL,
+    Dosage INT NOT NULL CHECK (Dosage > 0),
+    Refills INT,
+    Notes VARCHAR(100),
+    FOREIGN KEY (HealthRecordID) REFERENCES HealthRecords(HealthRecordID)
+);
+
+
+--
+INSERT ALL
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100001, '20101', '2024-01-01', 'Diagnosis1', 'Treatment1', 'Symptom1', 'Note1', 1001)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100002, '20102', '2024-01-02', 'Diagnosis2', 'Treatment2', 'Symptom2', 'Note2', 1002)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100003, '20103', '2024-01-03', 'Diagnosis3', 'Treatment3', 'Symptom3', 'Note3', 1003)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100004, '20104', '2024-01-04', 'Diagnosis4', 'Treatment4', 'Symptom4', 'Note4', 1004)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100005, '20105', '2024-01-05', 'Diagnosis5', 'Treatment5', 'Symptom5', 'Note5', 1005)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100006, '20106', '2024-01-06', 'Diagnosis6', 'Treatment6', 'Symptom6', 'Note6', 1006)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100007, '20107', '2024-01-07', 'Diagnosis7', 'Treatment7', 'Symptom7', 'Note7', 1007)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100008, '20108', '2024-01-08', 'Diagnosis8', 'Treatment8', 'Symptom8', 'Note8', 1008)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100009, '20109', '2024-01-09', 'Diagnosis9', 'Treatment9', 'Symptom9', 'Note9', 1009)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100010, '20110', '2024-01-10', 'Diagnosis10', 'Treatment10', 'Symptom10', 'Note10', 1010)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100011, '20111', '2024-01-11', 'Diagnosis11', 'Treatment11', 'Symptom11', 'Note11', 1011)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100012, '20112', '2024-01-12', 'Diagnosis12', 'Treatment12', 'Symptom12', 'Note12', 1012)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100013, '20113', '2024-01-13', 'Diagnosis13', 'Treatment13', 'Symptom13', 'Note13', 1013)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100014, '20114', '2024-01-14', 'Diagnosis14', 'Treatment14', 'Symptom14', 'Note14', 1014)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100015, '20115', '2024-01-15', 'Diagnosis15', 'Treatment15', 'Symptom15', 'Note15', 1015)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100016, '20116', '2024-01-16', 'Diagnosis16', 'Treatment16', 'Symptom16', 'Note16', 1016)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100017, '20117', '2024-01-17', 'Diagnosis17', 'Treatment17', 'Symptom17', 'Note17', 1017)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100018, '20118', '2024-01-18', 'Diagnosis18', 'Treatment18', 'Symptom18', 'Note18', 1018)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100019, '20119', '2024-01-19', 'Diagnosis19', 'Treatment19', 'Symptom19', 'Note19', 1019)
+    INTO HealthRecords (HealthRecordID, PetID, VisitDate, Diagnosis, Treatment, Symptoms, Notes, VetID) VALUES (100020, '20120', '2024-01-20', 'Diagnosis20', 'Treatment20', 'Symptom20', 'Note20', 1020)
+SELECT * FROM dual;
+
+INSERT ALL
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300001, 100001, 'Medication1', 10, 2, 'Note1')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300002, 100002, 'Medication2', 20, 3, 'Note2')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300003, 100003, 'Medication3', 30, 1, 'Note3')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300004, 100004, 'Medication4', 40, 0, 'Note4')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300005, 100005, 'Medication5', 50, 2, 'Note5')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300006, 100006, 'Medication6', 60, 3, 'Note6')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300007, 100007, 'Medication7', 70, 1, 'Note7')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300008, 100008, 'Medication8', 80, 0, 'Note8')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300009, 100009, 'Medication9', 90, 2, 'Note9')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300010, 100010, 'Medication10', 100, 3, 'Note10')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300011, 100011, 'Medication11', 110, 1, 'Note11')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300012, 100012, 'Medication12', 120, 0, 'Note12')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300013, 100013, 'Medication13', 130, 2, 'Note13')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300014, 100014, 'Medication14', 140, 3, 'Note14')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300015, 100015, 'Medication15', 150, 1, 'Note15')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300016, 100016, 'Medication16', 160, 0, 'Note16')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300017, 100017, 'Medication17', 170, 2, 'Note17')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300018, 100018, 'Medication18', 180, 3, 'Note18')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300019, 100019, 'Medication19', 190, 1, 'Note19')
+    INTO Medications (MedicationID, HealthRecordID, MedicationName, Dosage, Refills, Notes) VALUES (300020, 100020, 'Medication20', 200, 0, 'Note20')
+SELECT * FROM dual;
