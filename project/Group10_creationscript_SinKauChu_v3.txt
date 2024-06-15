@@ -1,0 +1,23 @@
+-- --Table healthRecords
+CREATE TABLE HealthRecords (
+    HealthRecordID INT PRIMARY KEY CHECK (LENGTH(CAST(HealthRecordID AS VARCHAR2(6))) = 6),
+    PetID VARCHAR(20) NOT NULL,
+    VisitDate DATE NOT NULL,   -- changed the value accepting to be Date instead of VARCHAR
+    Diagnosis VARCHAR(20),
+    Treatment VARCHAR(50),
+    Symptoms VARCHAR(100),
+    Notes VARCHAR(100),
+    VetID INT,
+    FOREIGN KEY (VetID) REFERENCES Vets(VetID)
+);
+
+-- Table Medications
+CREATE TABLE Medications (
+    MedicationID INT PRIMARY KEY,
+    HealthRecordID INT NOT NULL,
+    MedicationName VARCHAR(50) NOT NULL,
+    Dosage INT NOT NULL CHECK (Dosage > 0),
+    Refills INT,
+    Notes VARCHAR(100),
+    FOREIGN KEY (HealthRecordID) REFERENCES HealthRecords(HealthRecordID)
+);
