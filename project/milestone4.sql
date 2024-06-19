@@ -66,4 +66,12 @@ ORDER BY v.VETID ASC;
 SELECT* FROM vwVETS_DIAGNOSIS;
 
 
+SELECT re1.FIRSTNAME AS employeeName, re2.FIRSTNAME AS managerNAme, ro.
+FROM retailemployees re1 
+LEFT JOIN retailemployees re2 ON re1.reportsto = re2.employeenumber
+LEFT JOIN retailoffices ro ON re1.officecode = ro.officecode
+LEFT JOIN retailoffices ro ON re2.officecode = ro.officecode
+WHERE ro.country = 'USA' OR ro.country = 'UK';
+
+
 
